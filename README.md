@@ -30,7 +30,9 @@ The content is geared towards my personal needs. If you want to use it, and use 
 
 - Modify the file `pkgname.R` in `/R` to describe the scope of the package
 
-- Modify (or delete if not needed) the file `zzz.R` in `/R` used as *Storage* for any piece of code that can get organized anywhere else. Similarly for the file `zzzGV.R` that defines all the columns of all `data.table`s directly mentioned in the package.
+- Modify (or delete if not needed) the file `zzz.R` in `/R` used as *storage* for any piece of code that can not get organized anywhere else. 
+
+- Modify (or delete if not needed) the file `zzzGV.R` to include all the columns of all `data.table`s directly mentioned in the package functions.
 
 - Modify (or delete if not needed) the template file  `data.R` in `/R` needed to export datasets.
 
@@ -40,7 +42,7 @@ The content is geared towards my personal needs. If you want to use it, and use 
 
 - Try not to postpone writing down the documentation! description, parameters, examples
 
-- When exporting datasets or other objects, modify the file `include_datasets.R` in `/data-raw` to convert the objects in *rda* format and save them in the `/data` subfolder. Remember, if needed for sharing to people outside of the *R* env, to save also a copy as text in *csv* format or *shapefile* if digital boundaries, but only to be uploaded on *GitHub*
+- When exporting datasets or other objects, modify the file `include_datasets.R` in `/data-raw` to convert the objects in *rda* format and save them in the `/data` subfolder. Remember, if needed for sharing with people outside the *R* env, to save also a copy as text in *csv* format or *shapefile* if digital boundaries (but only to be uploaded on *GitHub*)
 
 - When ready: `check()`, `build()`, `install('./pkgname')`
 

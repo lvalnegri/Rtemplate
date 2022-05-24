@@ -1,19 +1,20 @@
 ## Rtemplate
 
-`Rtemplate` provides a folder structure and some template files to render an empty *RStudio* project as an *R* package project. The content is geared towards my personal needs. If you want to use it on a periodic basis you should probably fork the repo, then add, delete, or tinker with the files in the `data-raw/template` depending on your situation, and finally run the single line call in the 'data-raw/prepare_zip.R` file to renew the core zip file before (re)installing the package.
+`Rtemplate` provides a folder structure and some template files to render an empty *RStudio* project as an *R* package project. 
+
+The content is geared towards my personal needs. If you want to use it, and use it on a periodic basis, you should probably fork the repo, then add, delete, or tinker with the files in the `data-raw/template` depending on your situation, and finally run the single line call in the `data-raw/prepare_zip.R` file to renew the core zip file `inst/extdata/template.zip` before (re)installing the package.
 
 ### *R* Package Worflow
 
-- Create a [GitHub](https://github.com/lvalnegri/) repository whose name equals the package name. Ricordarsi che il nome del pacchetto deve iniziare con una lettera, e può contenere solo lettere, numeri e il punto (*non* usare quindi trattini `-` o sottolineature `_`). Il punto viene comunque scoraggiato poiché potrebbe confondersi con il richiamo dei metodi delle classi.
+- Create a [GitHub](https://github.com/lvalnegri/) repository whose name equals the package name. Remember that a package name must begin with a letter and contain only letters, numbers, and the dot `.` (you then can't use dash `-` or underscore `_`). In any case, the dot is discouraged to avoid confusion with classes' methods.
 
-- Create a new `RStudio` project as *Version Control* \> *git* using the above repository address `https://github.com/lvalnegri/pkgname` (il nome del progetto potrebbe anche essere diverso da quello del pacchetto, ma c'è il pericolo di confondersi e creare problemi in futuro; se possibile, mantenerli uguali).
+- Create a new `RStudio` project as *Version Control* \> *git* using the previous repository address (the project name can be different from the package name, but to avoid possible problems afterwards I'd keep the same writings for both).
 
 - Call `Rtemplate::create_package()`
 
 - Ignore *dot* files `.Rbuildignore` and `.Rproj`, then commit. 
 
 - Modify as needed the `DESCRIPTION` file. Specifically, write down:
-
   - `Package`
   - `Date`
   - `Title` must be less than 100 characters!!
@@ -25,11 +26,13 @@
   - `Depends` check the *R* version needed to run the package (be careful here not to constrain the user)
   - `RoxygenNote` check installed `roxygen` version
 
-- Modify as needed the `LICENSE`
+- Modify as needed the file `LICENSE` (keep the `MIT` licence if you can)
 
 - Modify the file `pkgname.R` in `/R` to describe the scope of the package
 
-- Modify (or delete if not needed) the file `zzz.R` in `/R` used as *Storage* for any piece of code that can get organized anywhere else. Similarly for the file `zzzGV.R` that defines all the columns of all `data.table`s directly mentioned in the package.
+- Modify (or delete if not needed) the file `zzz.R` in `/R` used as *storage* for any piece of code that can not get organized anywhere else. 
+
+- Modify (or delete if not needed) the file `zzzGV.R` to include all the columns of all `data.table`s directly mentioned in the package functions.
 
 - Modify (or delete if not needed) the template file  `data.R` in `/R` needed to export datasets.
 
@@ -39,11 +42,11 @@
 
 - Try not to postpone writing down the documentation! description, parameters, examples
 
-- When exporting datasets or other objects, modify the file `include_datasets.R` in `/data-raw` to convert the objects in *rda* format and save them in the `/data` subfolder. Remember, if needed for sharing to people outside of the *R* env, to save also a copy as text in *csv* format or *shapefile* if digital boundaries, but only to be uploaded on *GitHub*
+- When exporting datasets or other objects, modify the file `include_datasets.R` in `/data-raw` to convert the objects in *rda* format and save them in the `/data` subfolder. Remember, if needed for sharing with people outside the *R* env, to save also a copy as text in *csv* format or *shapefile* if digital boundaries (but only to be uploaded on *GitHub*)
 
 - When ready: `check()`, `build()`, `install('./pkgname')`
 
-### Keep in mind that...
+### Keep also in mind that...
 
 - The code in a package is run when the package is built, thus dependent among other things on the particular point in time and the specific hardware. Most if not all the code should therefore be written as a function, which is instead evaluated at run-time. Any $R$ code outside of a function is suspicious and should be carefully reviewed.
 

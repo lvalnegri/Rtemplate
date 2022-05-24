@@ -17,7 +17,7 @@ create_package <- function(x = './'){
         if(toupper(readline('The folder does not exist. Should I create it? (y/Y to continue) ')) != 'Y') return()
         dir.create(x)
     }
-    unzip(system.file('extdata', 'template.zip', package = 'masteRtemplate'), exdir = x)
+    unzip(system.file('extdata', 'template.zip', package = 'Rtemplate'), exdir = x)
     if(!file.exists(file.path(x, '.gitignore'))) message('Remember you now need to create a git repo in ', x)
     if(!file.exists(file.path(x, paste0(basename(x), '.Rproj')))) message('Remember you now need to create an RStudio project in ', x)
 }

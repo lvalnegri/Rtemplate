@@ -1,6 +1,8 @@
 ## Rtemplate
 
-`Rtemplate` provides a folder structure and some template files to render an empty *RStudio* project as an *R* package project. The content is geared towards my personal needs. If you want to use it on a periodic basis you should probably fork the repo, then add, delete, or tinker with the files in the `data-raw/template` depending on your situation, and finally run the single line call in the 'data-raw/prepare_zip.R` file to renew the core zip file before (re)installing the package.
+`Rtemplate` provides a folder structure and some template files to render an empty *RStudio* project as an *R* package project. 
+
+The content is geared towards my personal needs. If you want to use it, and use it on a periodic basis, you should probably fork the repo, then add, delete, or tinker with the files in the `data-raw/template` depending on your situation, and finally run the single line call in the `data-raw/prepare_zip.R` file to renew the core zip file `inst/extdata/template.zip` before (re)installing the package.
 
 ### *R* Package Worflow
 
@@ -43,7 +45,7 @@
 
 - When ready: `check()`, `build()`, `install('./pkgname')`
 
-### Keep in mind that...
+### Keep also in mind that...
 
 - The code in a package is run when the package is built, thus dependent among other things on the particular point in time and the specific hardware. Most if not all the code should therefore be written as a function, which is instead evaluated at run-time. Any $R$ code outside of a function is suspicious and should be carefully reviewed.
 

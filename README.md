@@ -6,16 +6,15 @@ The content is geared towards my personal needs. If you want to use it, and use 
 
 ### *R* Package Worflow
 
-- Create a [GitHub](https://github.com/lvalnegri/) repository whose name equals the package name. Ricordarsi che il nome del pacchetto deve iniziare con una lettera, e può contenere solo lettere, numeri e il punto (*non* usare quindi trattini `-` o sottolineature `_`). Il punto viene comunque scoraggiato poiché potrebbe confondersi con il richiamo dei metodi delle classi.
+- Create a [GitHub](https://github.com/lvalnegri/) repository whose name equals the package name. Remember that a package name must begin with a letter and contain only letters, numbers, and the dot `.` (you then can't use dash `-` or underscore `_`). In any case, the dot is discouraged to avoid confusion with classes' methods.
 
-- Create a new `RStudio` project as *Version Control* \> *git* using the above repository address `https://github.com/lvalnegri/pkgname` (il nome del progetto potrebbe anche essere diverso da quello del pacchetto, ma c'è il pericolo di confondersi e creare problemi in futuro; se possibile, mantenerli uguali).
+- Create a new `RStudio` project as *Version Control* \> *git* using the previous repository address (the project name can be different from the package name, but to avoid possible problems afterwards I'd keep the same writings for both).
 
 - Call `Rtemplate::create_package()`
 
 - Ignore *dot* files `.Rbuildignore` and `.Rproj`, then commit. 
 
 - Modify as needed the `DESCRIPTION` file. Specifically, write down:
-
   - `Package`
   - `Date`
   - `Title` must be less than 100 characters!!
@@ -27,7 +26,7 @@ The content is geared towards my personal needs. If you want to use it, and use 
   - `Depends` check the *R* version needed to run the package (be careful here not to constrain the user)
   - `RoxygenNote` check installed `roxygen` version
 
-- Modify as needed the `LICENSE`
+- Modify as needed the file `LICENSE` (keep the `MIT` licence if you can)
 
 - Modify the file `pkgname.R` in `/R` to describe the scope of the package
 

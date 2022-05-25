@@ -2,7 +2,7 @@
 # Create databases e tables in MySQL server #
 #############################################
 
-library(masteRfun)
+library(Rfuns)
 
 dbn <- 'insert-here-database-name'
 create_db(dbn)

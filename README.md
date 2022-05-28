@@ -14,17 +14,22 @@ The content is geared towards my personal needs. If you want to use it, and use 
 
 - Ignore *dot* files `.Rbuildignore` and `.Rproj`, then commit. 
 
-- Modify as needed the `DESCRIPTION` file. Specifically, write down:
-  - `Package`
-  - `Date`
+- Modify as needed the package *metadata* stored in the `DESCRIPTION` file. Specifically, write down:
+  - `Package` 
+  - `Date` yyyy-mm-dd
+  - `Authors@R` There should be at list one `cre` (creator/maintainer, with the email) and one `aut` (author or big contributor), possibly the same person, `ctb` (small contributor) is optional (to list multiple authors use `c`). It is possible to add a `comment` field to each person.
   - `Title` must be less than 100 characters!!
-  - `Version` try to follow the *major.minor.patch* scheme
+  - `Version` try to follow the *major.minor.patch[.dev]* scheme (starting from `0.0.0.9000`)
   - `Description` should have at least two sentences (insert a dot somewhere)
   - `Imports` list all packages you use to build exported functionalities (these are the packages needed to be installed to run the package, you can set each package version)
   - `Suggests` list other packages used to build the package
   - `Remotes` list packages that should be installed from sources different from `CRAN` (in the form *owner/repo*)
   - `Depends` check the *R* version needed to run the package (be careful here not to constrain the user)
   - `RoxygenNote` check installed `roxygen` version
+  - `URL` usually the package *GitHub* webpage
+  - `BugReports` usually the package *GitHub* *Issues* webpage
+  - `LazyData` you can drop this field if there's no data shared with the package. I always use `true`.
+
 
 - Modify as needed the file `LICENSE` (keep the `MIT` licence if you can)
 
@@ -36,11 +41,10 @@ The content is geared towards my personal needs. If you want to use it, and use 
 
 - Modify (or delete if not needed) the template file  `data.R` in `/R` needed to export datasets.
 
-- Write down your functions, storing them one for files, if reatively few, or organized by concepts.
+- Write down your functions, storing them one for files, if reatively few, or organized by concepts. Remember to add the dependencies in the *roxygen* header with `@import` and `@importFrom` 
 
+- Try not to postpone writing down the documentation! Add ASAP at least description, parameters with `@param` and `@inheritParams`, class of returned objects with @return. Later you should add one or more examples with @examples. Other potential additions `@` 
 - Use `load_all()` as much as you can, after even any small change, to test the validity of what you've done, before it's too late...
-
-- Try not to postpone writing down the documentation! description, parameters, examples
 
 - When exporting datasets or other objects, modify the file `include_datasets.R` in `/data-raw` to convert the objects in *rda* format and save them in the `/data` subfolder. Remember, if needed for sharing with people outside the *R* env, to save also a copy as text in *csv* format or *shapefile* if digital boundaries (but only to be uploaded on *GitHub*)
 

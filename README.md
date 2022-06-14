@@ -4,6 +4,11 @@
 
 The content is geared towards my personal needs. If you want to use it, and use it on a periodic basis, you should probably fork the repo, then add, delete, or tinker with the files in the `data-raw/template` depending on your situation, and finally run the single line call in the `data-raw/prepare_zip.R` file to renew the core zip file `inst/extdata/template.zip` before (re)installing the package.
 
+I encourage every $R$ user to write packages (or at least start writing $R$ scripts as *RStudio* projects, ready to be *enhanced* as $R $packages), there are many reasons to do that:
+- 
+
+
+
 ### *R* Package Worflow
 
 - Create a [GitHub](https://github.com/lvalnegri/) repository whose name equals the package name. Remember that a package name must begin with a letter and contain only letters, numbers, and the dot `.` (you then can't use dash `-` or underscore `_`). In any case, the dot is discouraged to avoid confusion with classes' methods.
@@ -33,20 +38,23 @@ The content is geared towards my personal needs. If you want to use it, and use 
 
 - Modify as needed the file `LICENSE` (keep the `MIT` licence if you can)
 
-- Modify the file `pkgname.R` in `/R` to describe the scope of the package
+- Modify name and content of the file `pkgname.R` in `/R`, used to describe in detail the scope of the package
 
 - Modify (or delete if not needed) the file `zzz.R` in `/R` used as *storage* for any piece of code that can not get organized anywhere else. 
 
 - Modify (or delete if not needed) the file `zzzGV.R` to include all the columns of all `data.table`s directly mentioned in the package functions.
 
-- Modify (or delete if not needed) the template file  `data.R` in `/R` needed to export datasets.
+- Modify (or delete if not needed) the template file `data.R` in `/R` needed to export datasets. Be sure the datasets mentioned here have actually been saved in `
 
 - Write down your functions, storing them one for files, if reatively few, or organized by concepts. Remember to add the dependencies in the *roxygen* header with `@import` and `@importFrom` 
 
-- Try not to postpone writing down the documentation! Add ASAP at least description, parameters with `@param` and `@inheritParams`, class of returned objects with @return. Later you should add one or more examples with @examples. Other potential additions `@` 
+- Try not to postpone writing down the documentation! Add ASAP at least description, parameters with `@param` and `@inheritParams`, class and structure of returned objects with @return. Later you should add one or more examples with @examples. Other potential additions `@` 
 - Use `load_all()` as much as you can, after even any small change, to test the validity of what you've done, before it's too late...
+- Run `document()` to renew `NAMESPACE` after any documentation `roxygen` tags changes
 
-- When exporting datasets or other objects, modify the file `include_datasets.R` in `/data-raw` to convert the objects in *rda* format and save them in the `/data` subfolder. Remember, if needed for sharing with people outside the *R* env, to save also a copy as text in *csv* format or *shapefile* if digital boundaries (but only to be uploaded on *GitHub*)
+- When exporting datasets or other objects, first modify the file `include_datasets.R` in `/data-raw`, whose job is to convert the objects in *rda* format and save them in the `/data` subfolder, then add documentation to the `/R/data.R` script. Remember, if needed for sharing with people outside the *R* env, to save also a copy as text in *csv* format or *shapefile* if digital boundaries (but only to be uploaded on *GitHub*)
+
+- Files to be downloaded and copied *as is* when users install the package must be stored in the `inst` folder. Remember that once the package has been installed, these files can be accessed using the `system.file` function, which will look for a file setting the `` directory as root: `system.file('path', 'to', 'filename', package = 'pkgname')` will return the file `r_library/pkgname/path/to/filename`. It's good style to allows for subfolders below `inst` to avoid confusion with other files, but you should at all cost avoid *reserved* names like: `build`, `data`, `demo`, `exec`, `help`, `html`, `inst`, `libs`, `Meta`, `man`, `po`, `R`, `src`, `tests`, `tools`, `vignettes`. In general, use a subfolder `extdata` to store *as is* files you don't know how to organize, if files are related to a programming language use the name of that language as subfolder, 
 
 - When ready: `check()`, `build()`, `install('./pkgname')`
 

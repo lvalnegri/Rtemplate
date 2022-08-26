@@ -5,7 +5,7 @@
 library(Rfuns)
 
 dbn <- 'insert-here-database-name'
-create_db(dbn)
+dd_create_db(dbn)
 
 ## TABLE <table name> -----------------
 x <- "
@@ -19,7 +19,7 @@ x <- "
     UNIQUE KEY `nome_key` (``),
     KEY `nome_key` (``)
 "
-create_table_db(dbn, 'table_name', x)
+dd_create_dbtable('table_name', dbn, x)
 
 
 ## END --------------------------------

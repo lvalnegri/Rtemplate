@@ -1,17 +1,21 @@
 Package: Rtemplate
 Type: Package
-Date: 2022-05-10
+Date: 2022-08-20
 Title: Create folder structures and template files to start an R package project
-Version: 0.1.0
+Version: 0.1.1
 Authors@R: person("Luca", "Valnegri", email = "l.valnegri@datamaps.co.uk", role = c("aut", "cre"))
 Description: 
   Create folder structures and template files to render an empty \emph{RStudio} project an $R$ package project. 
   Check the README FILE to know what you should change next.
-License: file LICENSE
+License: MIT + file LICENSE
+URL: https://github.com/lvalnegri/Rtemplate
+BugReports: https://github.com/lvalnegri/Rtemplate/issues
 Encoding: UTF-8
 Depends: R (>= 4.0)
 Imports:
-  utils
+    utils
 Suggests:
+Remotes:
 LazyData: true
-RoxygenNote: 7.2.0
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.1

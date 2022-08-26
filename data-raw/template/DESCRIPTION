@@ -4,14 +4,20 @@ Date: 2022-05-10
 Title: Insert Title (less than 100 character)
 Version: 0.1.0
 Authors@R: person("Luca", "Valnegri", email = "l.valnegri@datamaps.co.uk", role = c("aut", "cre"))
-Description: Insert Description at least two sentences, with a dot somewherein the middle.
-License: file LICENSE
+Description: Insert Description, at least two sentences, keep the dot at the end.
+License: MIT + file LICENSE
+URL: https://github.com/lvalnegri/pkgname
+BugReports: https://github.com/lvalnegri/pkgname/issues
 Encoding: UTF-8
 Depends: R (>= 4.1)
 Imports:
-  data.table,
-  sf
+    data.table,
+    Rfuns,
+    sf,
+    utils
 Suggests:
 Remotes:
+    lvalnegri/Rfuns
 LazyData: true
-RoxygenNote: 7.2.0
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.1

@@ -4,9 +4,11 @@
 
 The content is geared towards my personal needs. If you want to use it, and use it on a periodic basis, you should probably fork the repo, then add, delete, or tinker with the files in the `data-raw/template` depending on your situation, and finally run the (internal) function `prepare_zip` to renew the core zip file `inst/extdata/template.zip` before (re)installing the package.
 
-I encourage every $R$ user to write packages (or at least start writing $R$ scripts as *RStudio* projects, ready to be *enhanced* as $R $packages), there are many reasons to do that:
-- keep track of all the $R$ functions that you write and hopefully reuse
-
+I encourage every $R$ user to write packages (or at least start writing $R$ scripts as *RStudio* projects, ready to be *enhanced* as $R$ packages), there are many reasons to do that:
+- to distribute $R$ code and documentation, from colleagues to anyone throughout the official *CRAN* repository or any `git` hub website.   
+- to keep track of all the $R$ functions that you write and hopefully reuse
+- to distribute [shiny](https://github.com/rstudio/shiny) apps to be deployed on your own [Shiny server](https://docs.posit.co/shiny-server/) website or to be run by other [RStudio IDE](https://posit.co/products/open-source/rstudio/) users
+- to share (relatively small) data with some added functionality on them  
 
 
 ### *R* Package Worflow
@@ -20,8 +22,8 @@ I encourage every $R$ user to write packages (or at least start writing $R$ scri
 - Ignore *dot* files `.Rbuildignore` and `.Rproj`, then `commit`. 
 
 - Modify as needed the package *metadata* stored in the `DESCRIPTION` file. Specifically, fill the following fields:
-  - `Package` 
-  - `Date` yyyy-mm-dd
+  - `Package` the name of the package
+  - `Date` a date using the standard `yyyy-mm-dd` format
   - `Authors@R` There should be at list one `cre` (creator/maintainer, with the email) and one `aut` (author or big contributor), possibly the same person, `ctb` (small contributor) is optional (to list multiple authors use `c`). It is possible to add a `comment` field to each person.
   - `Title` must be less than 100 characters!!
   - `Version` try to follow the *major.minor.patch[.dev]* scheme (starting from `0.0.0.9000`)
@@ -57,9 +59,9 @@ I encourage every $R$ user to write packages (or at least start writing $R$ scri
 
 - Modify (or delete if not needed) the template file `data.R` in `/R` needed to export datasets. Be sure the datasets mentioned here have actually been *conveniently* saved in the `data` folder
 
-- Write down your functions, storing them one for file, named in the same way as the function, if they are relatively few, or organized by concepts; it's completely up to you the way the functions are saved, as soon as they work as intended. 
+- Write down your functions, storing them one for file, named in the same way as the function, if they are relatively few, or organized by *concept* files; it's completely up to you the way the functions are saved, as soon as they work as intended.
 
-- Remember to add the dependencies used in the *roxygen* header with `@import` and `@importFrom`, or using the form `pkg::fun` in the function body. All of the external packages mentioned must be also included in the `import` field in the `DESCRIPTION` file.
+- Remember to add the dependencies used in the *roxygen* header with `@import` and `@importFrom`, or using the form `pkg::fun` in the function body for any external function call. All of the external packages mentioned must be also included in the `import` field in the `DESCRIPTION` file.
 
 - Try not to postpone writing down the documentation, at least for the *exported* functions (the ones with a `@export` roxygen tag). Add ASAP at least a general description, meaning of parameters with `@param` and `@inheritParams`, the class and structure of the returned object(s), if any, with `@return`. Later you should also add one or more examples with `@examples`. 
 
@@ -69,13 +71,13 @@ I encourage every $R$ user to write packages (or at least start writing $R$ scri
 
 - Run `document()` to renew `NAMESPACE` after any documentation `roxygen` tags changes
 
-- When exporting datasets or other objects, first modify the file `include_datasets.R` in `/data-raw`, whose job is to convert the objects in *rda* format and save them in the `/data` subfolder, then add documentation to the `/R/data.R` script. Remember, if needed for sharing with people outside the *R* env, to save also a copy as text in *csv* format or *shapefile* if digital boundaries (but only to be uploaded on *GitHub*), eventually zipped if the original file is above the *hub* limits.
+- When exporting datasets or other objects, first modify the file `include_datasets.R` in `/data-raw`, whose job is to convert the objects in *rda* format and save them in the `/data` subfolder, then add documentation to the `/R/data.R` script. Remember, if needed for sharing with people outside the *R* env, to save also a copy as text in *csv* format or *shapefile* if digital boundaries (but only to be uploaded on *GitHub*), eventually zipped if the original file is above your *hub* limits (100MB forr *GitHub*).
 
-- Files to be downloaded and copied *as is* when users install the package must be stored in the `inst` folder. Remember that once the package has been installed, these files can be accessed using the `system.file` function, which will look for a file setting the `` directory as root, so that:
+- Files to be downloaded and copied *as is* when users install the package must be stored in the `inst` folder. Remember that once the package has been installed, these files can be accessed using the `system.file` function, which will look for a file setting the ` ` directory as root, so that:
 ```
 system.file('path', 'to', 'filename', package = 'pkgname')
 ``` 
-will return the file `r_library/pkgname/path/to/filename`. It's good style to allows for subfolders below `inst` to avoid confusion with other files, but you should at all cost avoid *reserved* names like: `build`, `data`, `demo`, `exec`, `help`, `html`, `inst`, `libs`, `Meta`, `man`, `po`, `R`, `src`, `tests`, `tools`, `vignettes`. In general, use a subfolder `extdata` to store *as is* files you don't know how to organize, if files are related to a programming language use the name of that language as subfolder, 
+will return the file `r_library/pkgname/path/to/filename`. It's good style to allows for subfolders below `inst` to avoid confusion with other files, but you should at all cost avoid *reserved* names like: `build`, `data`, `demo`, `exec`, `help`, `html`, `inst`, `libs`, `Meta`, `man`, `po`, `R`, `src`, `tests`, `tools`, `vignettes`. In general, use a subfolder `extdata` to store *as is* files you don't know how to organize. Finally, if files are related to a specific programming language use the name of that language as subfolder.
 
 - When ready: `document()`, `check()`, `build()`, `install('./pkgname')`
 

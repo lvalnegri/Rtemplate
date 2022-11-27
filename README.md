@@ -13,20 +13,11 @@ I encourage every $R$ user to write packages (or at least start writing $R$ scri
 
 - Create a [GitHub](https://github.com/lvalnegri/) repository whose name equals the package name. Remember that a package name must begin with a letter and contain only letters, numbers, and the dot `.` (you can not use dash `-` or underscore `_`, allegedly for old $S+$ consistency). In any case, the `dot` is discouraged to avoid confusion with classes' methods.
 
-- As a general rule, create a `dev` branch (or whatever name suits you best) to separate the code still in the *development* phase from the one ready for *deployment* or *production*. It's possible to use either the GUI controls on the top right pane of the RStudio interface, or the native `git`:
-  - `...` create the branch
-  - `...` add files to stage and commit
-  - `...` merge to the `main` branch
-  
-  Other git commands that could be useful are the following:
-  - `...` remove the last commit (without modifying the files)
-  - `...` 
-
 - Create a new `RStudio` project as *Version Control* \> *git* using the previous repository address (the project name can be different from the package name, but to avoid possible problems afterwards I'd keep the same writings for both).
 
 - Call `Rtemplate::create_package()`
 
-- Ignore *dot* files `.Rbuildignore` and `.Rproj`, then commit. 
+- Ignore *dot* files `.Rbuildignore` and `.Rproj`, then `commit`. 
 
 - Modify as needed the package *metadata* stored in the `DESCRIPTION` file. Specifically, fill the following fields:
   - `Package` 
@@ -44,12 +35,23 @@ I encourage every $R$ user to write packages (or at least start writing $R$ scri
   - `BugReports` usually the package *GitHub* *Issues* webpage
   - `LazyData` you can drop this field if there's no data shared with the package. I always use `true`.
 
-
 - Modify as needed the file `LICENSE` (keep the `MIT` licence if you can)
 
 - Modify name and content of the file `pkgname.R` in `/R`, used to describe in detail the scope of the package
 
-- Modify (or delete if not needed) the file `zzz.R` in `/R` used as *storage* for any piece of code that can not get organized anywhere else. 
+- `Commit` all of the above, then `push`
+
+- At this point, as a general rule, you should create a `dev` branch (or whatever name suits you best) to separate the code still in the *development* phase from the one ready for *deployment* or *production*. It's possible to use either the GUI controls on the top right pane of the RStudio interface, or the native `git`:
+  - `...` create the branch
+  - `...` add files to stage and commit
+  - `...` when you're ready to deploy, first merge `main` into `dev` to check for potential *conflicts* (this is actually necessary only if you work collaboratively)
+  - `...` merge to the `main` branch
+  
+  The following are other much less used `git` commands that I've found to be useful in some specific cases:
+  - `...` remove the last commit (without modifying the files)
+  - `...` 
+
+- Modify (or delete if not needed) the file `zzz.R` in `/R` used as *storage* for any small piece of code, usually short *hashes* or *lookups* vectors of lists, that can not get organized anywhere else. 
 
 - Modify (or delete if not needed) the file `zzzGV.R` to include all the columns of all `data.table`s directly mentioned in the package functions.
 

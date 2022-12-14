@@ -85,7 +85,13 @@ system.file('path', 'to', 'filename', package = 'pkgname')
 ``` 
 will return the file `r_library/pkgname/path/to/filename`. It's good style to allows for subfolders below `inst` to avoid confusion with other files, but you should at all cost avoid *reserved* names like: `build`, `data`, `demo`, `exec`, `help`, `html`, `inst`, `libs`, `Meta`, `man`, `po`, `R`, `src`, `tests`, `tools`, `vignettes`. In general, use a subfolder `extdata` to store *as is* files you don't know how to organize. Finally, if files are related to a specific programming language use the name of that language as subfolder.
 
-- When ready: `document()`, `check()`, `build()`, `install('./pkgname')`
+- When ready: 
+  ```
+  document()
+  check()
+  build()
+  install('./pkgname')
+  ```
 
 ### Keep also in mind that...
 

@@ -79,13 +79,19 @@ I encourage every $R$ user to write packages (or at least start writing $R$ scri
 
 - When exporting datasets or other objects, first modify the file `include_datasets.R` in `/data-raw`, whose job is to convert the objects in *rda* format and save them in the `/data` sub folder, then add documentation to the `/R/data.R` script. Remember, if needed for sharing with people outside the *R* env, to save also a copy as text in *csv* format or *shapefile* if digital boundaries (but only to be uploaded on *GitHub*), eventually zipped if the original file is above your *hub* limits (100MB for *GitHub*).
 
-- Files to be downloaded and copied *as is* when users install the package must be stored in the `inst` folder. Remember that once the package has been installed, these files can be accessed using the `system.file` function, which will look for a file setting the ` ` directory as root, so that:
+- Files to be downloaded and copied *as is* when users install the package must be stored in the `inst` folder. Remember that once the package has been installed, these files can be accessed using the `system.file` function, which will look for a file setting the package folder (including its *library* folder) as *root*, so that:
   ```
   system.file('path', 'to', 'filename', package = 'pkgname')
   ``` 
-  will return the file `r_library/pkgname/path/to/filename`. It's good style to allows for subfolders below `inst` to avoid confusion with other files, but you should at all cost avoid *reserved* names like: 
-  `build`, `data`, `demo`, `exec`, `help`, `html`, `inst`, `libs`, `Meta`, `man`, `po`, `R`, `src`, `tests`, `tools`, `vignettes`. 
-  In general, use a subfolder `extdata` to store *as is* files you don't know how to organize. Finally, if files are related to a specific programming language use the name of that language as sub folder.
+  will return the file `<r_library>/<pkgname>/path/to/filename`. 
+  
+  It's good style to allows for sub folders inside the `inst` folder to avoid confusion with other files, but you should at all cost avoid *reserved* names like: 
+  
+  `build`, `data`, `demo`, `exec`, `help`, `html`, `inst`, `libs`, `Meta`, `man`, `po`, `R`, `src`, `tests`, `tools`, `vignettes`.
+  
+  In general, try to use a sub folder `extdata` to store *as is* files you don't know how to organize. 
+  
+  Finally, if files are related to a specific programming language use the name of that language as sub folder.
 
 - When ready: 
   ```

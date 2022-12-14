@@ -43,14 +43,20 @@ I encourage every $R$ user to write packages (or at least start writing $R$ scri
 
 - `Commit` all of the above, then `push`
 
-- At this point, as a general rule, you should create a `dev` branch (or whatever name suits you best) to separate the code still in the *development* phase from the one ready for *deployment* or *production*. It's possible to use either the GUI controls on the top right pane of the RStudio interface, or the native `git`:
-  - `...` create the branch
-  - `...` add files to stage and commit
-  - `...` when you're ready to deploy, first merge `main` into `dev` to check for potential *conflicts* (this is actually necessary only if you work collaboratively)
-  - `...` merge to the `main` branch
-  
-  The following are other much less used `git` commands that I've found to be useful in some specific cases:
-  - `...` remove the last commit (without modifying the files)
+- As a general rule, create a `dev` branch (or whatever else suits you best) to separate the code in *development* from the code deployed in *production*. It's possible to use either the GUI controls on the top right of the `Git` pane of the *RStudio* interface, or the native `git` shell as follows (prepend each command with `git`):
+  - `branch dev` create the branch `dev`
+  - `checkout dev` move to the `dev` branch, and work on your code
+  - `add *` when files are ready, add them to *stage* area
+  - `commit -m 'message'` commit with comment
+  - `push -u origin dev` send committed files in `dev` branch to GitHub repo
+  - `merge main` (while on `dev` branch) merge the current `main` branch to `dev` (so that potential conflicts can be solved in `dev` beforehand)
+  - `checkout main` move to the `main` branch
+  - `merge dev` merge the `dev` branch to the `main` branch (at a local level)
+  - `push -u origin main` send committed files in `main` branch  to GitHub repo
+  - go back to `checkout dev` and repeat obsessively
+
+  Other `git` commands that could be useful are the following:
+  - `git reset HEAD~1 --soft` remove the last commit, without modifying the files, in case you did *not* push yet
   - `...` 
 
 - Modify (or delete if not needed) the file `zzz.R` in `/R` used as *storage* for any small piece of code, usually short *hashes* or *lookups* vectors of lists, that can not get organized anywhere else. 

@@ -77,13 +77,15 @@ I encourage every $R$ user to write packages (or at least start writing $R$ scri
 
 - Run `document()` to renew `NAMESPACE` after any documentation `roxygen` tags changes
 
-- When exporting datasets or other objects, first modify the file `include_datasets.R` in `/data-raw`, whose job is to convert the objects in *rda* format and save them in the `/data` subfolder, then add documentation to the `/R/data.R` script. Remember, if needed for sharing with people outside the *R* env, to save also a copy as text in *csv* format or *shapefile* if digital boundaries (but only to be uploaded on *GitHub*), eventually zipped if the original file is above your *hub* limits (100MB forr *GitHub*).
+- When exporting datasets or other objects, first modify the file `include_datasets.R` in `/data-raw`, whose job is to convert the objects in *rda* format and save them in the `/data` sub folder, then add documentation to the `/R/data.R` script. Remember, if needed for sharing with people outside the *R* env, to save also a copy as text in *csv* format or *shapefile* if digital boundaries (but only to be uploaded on *GitHub*), eventually zipped if the original file is above your *hub* limits (100MB for *GitHub*).
 
 - Files to be downloaded and copied *as is* when users install the package must be stored in the `inst` folder. Remember that once the package has been installed, these files can be accessed using the `system.file` function, which will look for a file setting the ` ` directory as root, so that:
-```
-system.file('path', 'to', 'filename', package = 'pkgname')
-``` 
-will return the file `r_library/pkgname/path/to/filename`. It's good style to allows for subfolders below `inst` to avoid confusion with other files, but you should at all cost avoid *reserved* names like: `build`, `data`, `demo`, `exec`, `help`, `html`, `inst`, `libs`, `Meta`, `man`, `po`, `R`, `src`, `tests`, `tools`, `vignettes`. In general, use a subfolder `extdata` to store *as is* files you don't know how to organize. Finally, if files are related to a specific programming language use the name of that language as subfolder.
+  ```
+  system.file('path', 'to', 'filename', package = 'pkgname')
+  ``` 
+  will return the file `r_library/pkgname/path/to/filename`. It's good style to allows for subfolders below `inst` to avoid confusion with other files, but you should at all cost avoid *reserved* names like: 
+  `build`, `data`, `demo`, `exec`, `help`, `html`, `inst`, `libs`, `Meta`, `man`, `po`, `R`, `src`, `tests`, `tools`, `vignettes`. 
+  In general, use a subfolder `extdata` to store *as is* files you don't know how to organize. Finally, if files are related to a specific programming language use the name of that language as sub folder.
 
 - When ready: 
   ```
@@ -101,6 +103,6 @@ will return the file `r_library/pkgname/path/to/filename`. It's good style to al
 - Be weary of any changes in the global env and undo all of it when exiting, or inform the end user if that's not possible. In particular:
   - try to never use in your functions the following statements: `library`, `require`, `setwd`, `source`, `Sys.setenv()`, `Sys.setlocale`, `set.seed`. 
   - modifications in `options` and `par` can be rewinded when exiting, using the `on.exit` statement, if the initial state is stored . 
-  - temporary objects, like files and paths, usually created with respectivily `tempfile` and `tempdir`, should be deleted using the `unlink` statement.
+  - temporary objects, like files and paths, usually created with respectively `tempfile` and `tempdir`, should be deleted using the `unlink` statement.
 
 - There can not be non-ASCII characters in any code. Use instead the special Unicode escape format `\uxxxx`. 

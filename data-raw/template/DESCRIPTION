@@ -22,6 +22,7 @@ Suggests:
 Remotes:
     lvalnegri/Rfuns
 LazyData: true
+LazyDataCompression:gzip
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.1
 VignetteBuilder: knitr

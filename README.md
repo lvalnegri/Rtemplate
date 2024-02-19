@@ -57,7 +57,12 @@ I encourage every $R$ user to write packages (or at least start writing $R$ scri
 
   Other `git` commands that could be useful are the following:
   - `git reset HEAD~1 --soft` remove the last commit, without modifying the files, in case you did *not* push yet
-  - `...` 
+  - `...`
+
+  As a curiosity, to calculate the total count of lines of *R* code in a package, run the following command from inside its project:
+  ```
+  git ls-files | grep 'R/.*\.R$' | xargs wc -l
+  ```
 
 - Modify (or delete if not needed) the file `zzz.R` in `/R` used as *storage* for any small piece of code, usually short *hashes* or *lookups* vectors of lists, that can not get organized anywhere else. 
 

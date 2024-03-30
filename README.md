@@ -33,9 +33,12 @@ I encourage every $R$ user to write packages (or at least start writing $R$ scri
   - `Remotes` list packages that should be installed from sources different from `CRAN` (in the form *owner/repo*)
   - `Depends` check the *R* version needed to run the package (be careful here not to constrain the user to update $R$ core unnecessarily)
   - `RoxygenNote` check installed `roxygen` version
+  - `Roxygen: list(markdown = TRUE)` To turn on *markdown* support for the whole package
   - `URL` usually the package *GitHub* webpage
   - `BugReports` usually the package *GitHub* *Issues* webpage
   - `LazyData` you can drop this field if there's no data shared with the package. I always use `true`.
+  - `LazyDataCompression: gzip` if you use, as I do, a different compression method than the default `xz`. You should always try which method is better for your use case. I use `gzip` because is faster,even if tends to be less efficient in saving space, but storage is usually much cheaper than time!
+
 
 - Modify as needed the file `LICENSE` (keep the `MIT` licence if you can)
 
@@ -43,7 +46,7 @@ I encourage every $R$ user to write packages (or at least start writing $R$ scri
 
 - `Commit` all of the above, then `push`
 
-- As a general rule, create a `dev` branch (or whatever else suits you best) to separate the code in *development* from the code deployed in *production*. It's possible to use either the GUI controls on the top right of the `Git` pane of the *RStudio* interface, or the native `git` shell as follows (prepend each command with `git`):
+- As a general rule, create at least a secondary `dev` branch (or whatever name suits you best) to separate the code in *development* from the code deployed in *production*. It's possible to use either the GUI controls on the top right of the `Git` pane of the *RStudio* interface, or the native `git` shell as follows (prepend each command with `git`):
   - `branch dev` create the branch `dev`
   - `checkout dev` move to the `dev` branch, and work on your code
   - `add *` when files are ready, add them to *stage* area
